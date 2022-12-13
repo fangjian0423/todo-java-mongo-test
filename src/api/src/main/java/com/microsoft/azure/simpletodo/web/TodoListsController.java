@@ -31,19 +31,7 @@ public class TodoListsController implements ListsApi {
 
     @Override
     public ResponseEntity<TodoItem> createItem(String listId, TodoItem todoItem) {
-        Optional<TodoList> optionalTodoList = todoListRepository.findById(listId);
-        if (optionalTodoList.isPresent()) {
-            todoItem.setListId(listId);
-            TodoItem savedTodoItem = todoItemRepository.save(todoItem);
-            URI location = ServletUriComponentsBuilder
-                    .fromCurrentRequest()
-                    .path("/{id}")
-                    .buildAndExpand(savedTodoItem.getId())
-                    .toUri();
-            return ResponseEntity.created(location).body(savedTodoItem);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+	throw new RuntimeException("oops");
     }
 
     @Override
